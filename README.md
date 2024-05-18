@@ -84,7 +84,7 @@ AkashLink solves the complexity and accessibility barriers of transitioning from
 
 4. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### Usage
