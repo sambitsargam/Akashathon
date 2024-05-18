@@ -153,6 +153,14 @@ const LiquidityModal: React.FC<{ address: string; aktBalance: number; refreshBal
       if (!walletKey) {
         throw new Error("Failed to get connected wallet information");
       }
+      console.log("walletKey", walletKey);
+
+      
+      // if the wallet key is in osomosis chain, then store the address in the local storage
+      if (chainId === osmosisChainId) {
+        localStorage.setItem("osmosisWalletAddress", walletKey.bech32Address);
+      }
+
       return {
         bech32Address: walletKey.bech32Address,
         pubKey: walletKey.pubKey,

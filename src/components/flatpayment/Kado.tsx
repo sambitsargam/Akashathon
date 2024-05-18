@@ -38,11 +38,18 @@ const customStyles = {
 const KadoIFrameModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [bech32Address, setBech32Address] = useState<string | null>(null);
 
+  console.log('bech32Address', bech32Address);
+
+
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       Modal.setAppElement('#__next');
-    }
+    };
+    const address = localStorage.getItem('walletAddress');
+    setBech32Address(address);
   }, []);
 
   const openModal = () => {
@@ -86,7 +93,7 @@ const KadoIFrameModal = () => {
         }
         <div>
           <iframe
-            src='https://app.kado.money/?onPayCurrency=USD&onRevCurrency=OSMO&offPayCurrency=OSMO&offRevCurrency=USD&fiatList=USD,INR,CAD&network=osmosis&product=BUY'
+            src={`https://app.kado.money/?onPayCurrency=USD&onRevCurrency=OSMO&offPayCurrency=OSMO&offRevCurrency=USD&fiatList=USD,INR,CAD&network=osmosis&product=BUY&onToAddress=${bech32Address}`}
             width='500'
             height='686'
             frameBorder={0}
